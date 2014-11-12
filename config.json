@@ -1,62 +1,55 @@
 {
   "project": {
-    "name": "Finda",
-    "description": "<p>Finda is a generic \"find-a\" app for geographic datasets.</p>",
+    "name": "MA Child Care Finder",
+    "description": "<p>The MA Child Care Finder is a sample app built on Code for Boston's Finda platform, intended to show quick and dirty development of mapping applications using freely available, open-source tools.</p>",
     "contact": "Please send feedback, ideas, and bug reports to our <a href=\"https://github.com/codeforboston/finda/issues\" target=\"_blank\">Github</a> page."
   },
   "map": {
-    "preview_attribute": "organization_name",
-    "center":[42.3725, -71.1266],
-    "zoom":13,
-    "maxZoom":16,
-    "maxBounds":[
-      [39.2, -78.0],
-      [44.5, -65.0]
+    "preview_attribute": "Program Name",
+    "center": [
+      42.3725,
+        -71.1266
+    ],
+    "zoom": 13,
+    "maxZoom": 16,
+    "maxBounds": [
+      [
+        39.2,
+          -78.0
+      ],
+      [
+        44.5,
+          -65.0
+      ]
     ]
   },
   "properties": [
-    "organization_name",
-    "address",
-    {"name": "address", "title": "directions", "directions": true },
-    {"name": "web_url", "title": "website", "url": true },
-    {"name": "contact_names", "title": "Contact Information" },
-    "contact_emails",
-    "phone_numbers",
-
-    {"name": "services_offered", "title": "Services" },
-    {"name": "youth_category", "title": "Type of Organization" },
-    {"name": "target_populations", "title": "Populations Served" },
-
-    {"name": "additional_notes", "title": "Information"}
+    "Program Name",
+    "Address1",
+    "Address2",
+    "City",
+    "Zip",
+    "Provider Phone",
+    "eMailAddress",
+    {"name": "Capacity", "title": "Capacity"},
+    {"name": "Program Type", "title": "Program Type"}
   ],
   "list": [
-    "organization_name",
-    "address"
+    "Program Name",
+    "Address1",
+    "Address2"
   ],
   "search": {
-    "geosearch": true,
-    "full_text": {
-      "keys": [
-        "address",
-        "organization_name",
-        "community",
-        "youth_category",
-        "service_class_level_2",
-        "additional_notes"]
-    }
+    "geosearch": true
   },
   "facets": {
-    "target_populations": {
-      "title": "Populations Served",
+    "Program Type": {
+      "title": "Program Type",
       "type": "list"
-    },
-    "youth_category": {
-      "title": "Category",
-      "type": "single"
     }
   },
   "analytics": {
-    "enabled": true,
+    "enabled": false,
     "private": false,
     "google_tracker": null,
     "hostname": "auto",
