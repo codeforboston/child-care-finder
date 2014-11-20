@@ -46,6 +46,12 @@
     "Program Type": {
       "title": "Program Type",
       "type": "list"
+    },
+    "Map": {
+      "title": "Map",
+      "text": "Limit results to those visible on the map",
+      "type": "map",
+      "value": true
     }
   },
   "analytics": {
