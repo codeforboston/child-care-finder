@@ -5,7 +5,7 @@
     "contact": "Please send feedback, ideas, and bug reports to our <a href=\"https://github.com/codeforboston/finda/issues\" target=\"_blank\">Github</a> page."
   },
   "map": {
-    "preview_attribute": "Program Name",
+    "preview_attribute": "name",
     "center": [
       42.3725,
         -71.1266
@@ -24,30 +24,70 @@
     ]
   },
   "properties": [
-    "Program Name",
-    "Address1",
-    "Address2",
-    "City",
-    "Zip",
-    "Provider Phone",
-    "eMailAddress",
-    {"name": "Capacity", "title": "Capacity"},
-    {"name": "Program Type", "title": "Program Type"}
+    "name",
+    "address",
+    "city",
+    "zip",
+    "phone",
+    "email",
+    {"name": "url", "title": "more info", "url": true},
+    {"name": "capacity", "title": "Capacity"},
+    {"name": "type", "title": "Program Type"}
   ],
   "list": [
-    "Program Name",
-    "Address1",
-    "Address2"
+    "name",
+    "address",
+    "city"
   ],
   "search": {
     "geosearch": true
   },
   "facets": {
-    "Program Type": {
+    "type": {
       "title": "Program Type",
-      "type": "list"
+      "type": "single"
     },
-    "Map": {
+    "transport": {
+      "title": "Transportation",
+      "type": "single"
+    },
+    "food": {
+      "title": "Meals",
+      "type": "single"
+    },
+    "special": {
+      "title": "Special Needs",
+      "type": "single"
+    },
+    "help": {
+      "title": "Accepts Financial Assistance",
+      "type": "single"
+    },
+    "duration": {
+      "title": "Duration",
+      "type": "single"
+    },
+    "dropin": {
+      "title": "Drop In Care",
+      "type": "single"
+    },
+    "before": {
+      "title": "Before School",
+      "type": "single"
+    },
+    "after": {
+      "title": "After School",
+      "type": "single"
+    },
+    "holidays": {
+      "title": "Open Holidays",
+      "type": "single"
+    },
+    "accept": {
+      "title": "Part-Time/Full-Time",
+      "type": "single"
+    },
+    "map": {
       "title": "Map",
       "text": "Limit results to those visible on the map",
       "type": "map",
