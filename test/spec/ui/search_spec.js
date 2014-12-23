@@ -50,5 +50,19 @@ define(['test/mock', 'jquery'], function(mock, $) {
         expect(input.val()).toEqual('');
       });
     });
+
+    describe('uiShowingSearchResult', function() {
+      beforeEach(function() {
+        $(document).trigger('uiShowingSearchResult', {
+          display: 'display text'
+        });
+      });
+      it('sets the placeholder to the given display text', function() {
+        var input = this.component.select('searchSelector');
+        expect(input.attr('placeholder')).toEqual(
+          'display text');
+        expect(input.val()).toEqual('');
+      });
+    });
   });
 });

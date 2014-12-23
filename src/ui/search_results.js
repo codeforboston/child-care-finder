@@ -3,6 +3,7 @@ define(function(require, exports, module) {
   var flight = require('flight');
   var $ = require('jquery');
   var _ = require('lodash');
+  var templates = require('infotemplates');
   var Handlebars = require('handlebars');
 
   module.exports = flight.component(function searchResults() {
@@ -13,8 +14,17 @@ define(function(require, exports, module) {
       suggestedSelector: ".suggested",
       resultContainerSelector: "ul",
       resultSelector: "li",
-      resultTemplate: '<li><strong>{{ organization_name }}</strong> ({{ address }})</li>'
+      resultTemplate: '<li>{{{ . }}}</li>'
     });
+
+    this.configureResults = function(ev, config) {
+      if (config.search && config.search.full_text) {
+        this.render = _.partial(templates.popup,
+                                config.search.full_text.properties);
+      } else {
+        this.teardown();
+      }
+    };
 
     this.showHelp = function(ev, options) {
       if (options.query) {
@@ -34,7 +44,8 @@ define(function(require, exports, module) {
       $container.empty();
       if (results.length) {
         _.each(results.slice(0, 5), function(result) {
-          var html = resultTemplate(result.properties);
+          var html = resultTemplate(this.render(result.properties))
+                .replace("<br/>", " ");
           $(html).data('result', result).appendTo($container);
         }, this);
         this.select('suggestedSelector').show();
@@ -51,7 +62,6 @@ define(function(require, exports, module) {
       var $target = $(ev.target).closest(this.attr.resultSelector),
           display = $target.text(),
           result = $target.data('result');
-
       this.trigger('uiHideSearchResults');
       this.trigger(this.attr.searchSelector,
                    'uiShowingSearchResult',
@@ -70,6 +80,7 @@ define(function(require, exports, module) {
     };
 
     this.after('initialize', function() {
+      this.on(document, 'config', this.configureResults);
       this.on(document, 'dataTypeaheadResults', this.searchResults);
       this.on(document, 'uiInProgressSearch', this.showHelp);
       this.on('uiShowSearchResults', this.showSearchResults);

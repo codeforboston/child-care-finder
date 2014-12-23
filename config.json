@@ -40,7 +40,14 @@
     "city"
   ],
   "search": {
-    "geosearch": true
+    "geosearch": true,
+    "full_text": {
+      "keys": ["name", "address"],
+      "properties": [
+        "name",
+        {"name": "address", "before": " (", "after": ")"}
+      ]
+    }
   },
   "facets": {
     "type": {

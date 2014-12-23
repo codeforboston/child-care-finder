@@ -77,16 +77,20 @@ define(function(require, exports) {
         rendered;
     _.each(properties, function(property) {
 
-      var key;
       if (typeof property === "string") {
-        key = property;
-      } else if (typeof property === "object") {
-        key = property.name;
+        property = {name: property};
       }
+      var key = property.name;
 
       var value = feature[key];
       if (value !== undefined && (value.length === undefined || value.length !== 0)) {
         rendered = format(value, property);
+        if (property.before) {
+          rendered = property.before + rendered;
+        }
+        if (property.after) {
+          rendered = rendered + property.after;
+        }
         if (rendered) {
           popup.push({
             klass: key.replace(' ', '-'),

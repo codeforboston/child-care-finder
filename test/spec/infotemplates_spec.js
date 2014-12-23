@@ -43,6 +43,18 @@ define(
           expect(address.html()).toEqual(
             feature.address.replace(/\n/g, '<br>'));
         });
+        it('text with before/after attributes include that text', function() {
+          var renderedText = $(templates.popup([
+            {
+              name: "address",
+              before: "before ",
+              after: " after"
+            }
+          ], {
+            address: 'address'
+          })).text();
+          expect(renderedText).toEqual('before address after');
+        });
         it('empty attributes are not rendered', function() {
           var additional_notes = $rendered.find('.feature-additional_notes');
           expect(additional_notes.length).toEqual(0);

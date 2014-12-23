@@ -39,8 +39,14 @@ define(function(require, exports, module) {
     };
 
     this.onSearchResult = function(ev, result) {
+      this.showSearchResult(ev, {
+        display: result.name
+      });
+    };
+
+    this.showSearchResult = function showSearchResult(ev, result) {
       this.select('searchSelector').attr('placeholder',
-                                         result.name).val('');
+                                         result.display).val('');
     };
 
     this.after('initialize', function() {
@@ -48,6 +54,7 @@ define(function(require, exports, module) {
       this.on('submit', this.search);
       this.on(document, 'config', this.configureSearch);
       this.on(document, 'dataSearchResult', this.onSearchResult);
+      this.on(document, 'uiShowingSearchResult', this.showSearchResult);
     });
   });
 });

@@ -16,3 +16,13 @@
 #list .feature-name {
   font-size: 14px;
 }
+
+#search-results .feature-name {
+  font-weight: strong;
+  font-size: inherit;
+  display: inline;
+}
+
+#search-results .feature-address {
+  display: inline;
+}

@@ -33,7 +33,8 @@ define(
                                                    'setMaxBounds',
                                                    'invalidateSize',
                                                    'addLayer',
-                                                   'remove'
+                                                   'remove',
+                                                   'clearAllEventListeners'
                                                   ]);
         this.component.map.options = {};
         this.component.trigger('config', mock.config);

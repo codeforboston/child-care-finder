@@ -162,16 +162,18 @@ define(function(require, exports, module) {
       if (feature) {
         this.currentFeature = feature;
         var layer = this.layers[feature.id];
-        layer.setIcon(this.grayIcon);
-        this.previouslyClicked = layer;
+        this.cluster.zoomToShowLayer(layer, function() {
+          layer.setIcon(this.grayIcon);
+          this.previouslyClicked = layer;
 
-        // re-bind popup to feature with specified preview attribute
-        this.bindPopupToFeature(
-          layer,
-          feature.properties[this.featurePreviewAttr]);
+          // re-bind popup to feature with specified preview attribute
+          this.bindPopupToFeature(
+            layer,
+            feature.properties[this.featurePreviewAttr]);
 
-        this.trigger('panTo', {lng: feature.geometry.coordinates[0],
-                               lat: feature.geometry.coordinates[1]});
+          this.trigger('panTo', {lng: feature.geometry.coordinates[0],
+                                 lat: feature.geometry.coordinates[1]});
+        }.bind(this));
       } else {
         this.previouslyClicked = null;
       }
@@ -247,7 +249,7 @@ define(function(require, exports, module) {
       this.cluster = new L.MarkerClusterGroup({
         chunkedLoading: true,
         chunkProgress: function(processed, total) {
-          if (processed === total) {
+          if (processed && processed === total) {
             this.trigger('mapFinished', {});
           }
         }.bind(this)
@@ -285,6 +287,7 @@ define(function(require, exports, module) {
 
     this.before('teardown', function() {
       if (this.map) {
+        this.map.clearAllEventListeners();
         this.map.remove();
         this.map = undefined;
       }
