@@ -50,6 +50,10 @@
     }
   },
   "facets": {
+    "city": {
+      "title": "City",
+      "type": "single"
+    },
     "type": {
       "title": "Program Type",
       "type": "single"
